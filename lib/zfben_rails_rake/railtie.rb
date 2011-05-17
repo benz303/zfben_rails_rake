@@ -5,7 +5,7 @@ module ZfbenRailsRake
     railtie_name :zfben_rails_rake
 
     rake_tasks do
-      load "tasks/git.rb"
+      load File.join(File.dirname(__FILE__), '..', '..', 'tasks', 'git.rb')
     end
   end
 end
