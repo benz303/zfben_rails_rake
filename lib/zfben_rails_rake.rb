@@ -1,0 +1,3 @@
+module ZfbenRailsRake
+  # Your code goes here...
+end
