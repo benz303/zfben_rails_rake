@@ -13,5 +13,5 @@ namespace 'unicorn' do
   end
   
   desc 'restart server'
-  task :restart => [:stop, :start]
+  task :restart, :env, :needs => [:stop, :start]
 end
