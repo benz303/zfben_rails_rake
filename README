@@ -1,10 +1,8 @@
-SUMMARY
--------
+== SUMMARY
 
 This is plugin to add some useful tasks to rails.
 
-Using the Gem
--------------
+== Getting Started
 
 adding gem to Gemfile
 
@@ -12,4 +10,4 @@ adding gem to Gemfile
 
 update bundle
 
-	bundle install
+  bundle install
