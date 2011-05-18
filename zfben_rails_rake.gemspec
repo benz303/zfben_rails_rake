@@ -1,10 +1,9 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "zfben_rails_rake/version"
 
 Gem::Specification.new do |s|
   s.name        = "zfben_rails_rake"
-  s.version     = ZfbenRailsRake::VERSION
+  s.version     = '0.0.4'
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Ben"]
   s.email       = ["ben@zfben.com"]
