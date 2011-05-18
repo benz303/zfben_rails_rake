@@ -2,12 +2,29 @@
 
 This is plugin to add some useful tasks to rails.
 
+  rake clear:all             # clear all
+  rake clear:log             # clear log folder
+  rake clear:public          # clear public folder
+  rake clear:tmp             # clear tmp folder
+
+  rake git:commit[comment]   # git commit with your comment
+  rake git:pull              # git pull
+  rake git:push[comment]     # git push with your comment
+
+  rake unicorn:restart[env]  # restart server
+  rake unicorn:start[env]    # start server
+  rake unicorn:stop          # stop server
+
 == Getting Started
 
-adding gem to Gemfile
+1. adding gem to Gemfile
 
   gem 'zfben_rails_rake'
 
-update bundle
+2. update bundle
 
   bundle install
+
+3. try `rake -T`, and enjoy it :)
+
+  take -T
