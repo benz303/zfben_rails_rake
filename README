@@ -1,0 +1,15 @@
+SUMMARY
+-------
+
+This is plugin to add some useful tasks to rails.
+
+Using the Gem
+-------------
+
+adding gem to Gemfile
+
+  gem 'zfben_rails_rake'
+
+update bundle
+
+	bundle install
