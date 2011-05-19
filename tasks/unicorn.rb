@@ -1,9 +1,9 @@
 namespace 'unicorn' do
   desc 'start server'
-  task :start, :env do |task, env|
+  task :start, :env, :config do |task, env, config|
     cmd = 'unicorn_rails'
-    cmd << ' -c u.rb' if File.exists? File.join(Rails.root, 'u.rb')
-    cmd << ' -E ' << env.env if env != {}
+    cmd << ' -c u.rb' if defined?(config.config) && File.exists?(File.join(Rails.root, config.config))
+    cmd << ' -E ' << env.env if defined? env.env
     sys cmd << ' -D'
   end
   
@@ -13,5 +13,5 @@ namespace 'unicorn' do
   end
   
   desc 'restart server'
-  task :restart, :env, :needs => [:stop, :start]
+  task :restart, :env, :config, :needs => [:stop, :start]
 end

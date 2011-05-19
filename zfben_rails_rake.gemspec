@@ -21,4 +21,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'rainbow'
   s.add_dependency 'rails'
   s.add_dependency 'unicorn'
+  s.add_dependency 'request-log-analyzer'
 end

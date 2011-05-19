@@ -6,12 +6,12 @@ namespace 'git' do
 
   desc 'git commit with your comment'
   task :commit, :comment do |task, comment|
-    if comment == {}
+    unless defined? comment.comment
       comment = 'no comment'
     else
       comment = comment.comment
     end
-    sys "git commit -m '#{comment}' -a"
+    sys "git add .;git commit -m '#{comment}' -a"
   end
   
   desc 'git push with your comment'
