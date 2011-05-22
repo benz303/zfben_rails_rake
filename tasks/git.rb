@@ -5,17 +5,18 @@ namespace 'git' do
   end
 
   desc 'git commit with your comment'
-  task :commit, :comment do |task, comment|
-    unless defined? comment.comment
-      comment = 'no comment'
+  task :commit, [:comment] do |task, args|
+    args = args.to_hash
+    if args.has_key? :comment
+      comment = `git status`
     else
-      comment = comment.comment
+      comment = args[:comment]
     end
     sys "git add .;git commit -m '#{comment}' -a"
   end
   
   desc 'git push with your comment'
-  task :push, :comment, :needs => :commit do |task, comment|
+  task :push, [:comment] => [:commit] do |task, comment|
     sys 'git push'
   end
 end
