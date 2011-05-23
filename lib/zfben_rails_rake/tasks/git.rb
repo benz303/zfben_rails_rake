@@ -7,16 +7,18 @@ namespace 'git' do
   desc 'git commit with your comment'
   task :commit, [:comment] do |task, args|
     args = args.to_hash
-    if args.has_key? :comment
-      comment = `git status`
-    else
-      comment = args[:comment]
-    end
-    sys "git add .;git commit -m '#{comment}' -a"
+    comment = args.has_key?(:comment) ? args[:comment] : `git status`
+    sys "git add ."
+    sys "git commit -m '#{comment}' -a"
   end
   
   desc 'git push with your comment'
   task :push, [:comment] => [:commit] do |task, comment|
     sys 'git push'
+  end
+  
+  desc 'copy .gitignore to rails root'
+  task :copy do
+    sys 'cp ' << File.join(Path, 'static', '.gitignore') << ' ' << Rails.root.to_s
   end
 end
