@@ -10,6 +10,7 @@ This is plugin to add some useful tasks to rails.
   rake git:commit[comment]          # git commit with your comment
   rake git:pull                     # git pull
   rake git:push[comment]            # git push with your comment
+  rake git:copy                     # copy .gitignore to rails root path
 
   rake unicorn:restart[env,config]  # restart server
   rake unicorn:start[env,config]    # start server

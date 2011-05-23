@@ -17,8 +17,8 @@ namespace 'git' do
     sys 'git push'
   end
   
-  desc 'copy .gitignore to rails root'
+  desc 'copy .gitignore to rails root path'
   task :copy do
-    sys 'cp ' << File.join(Path, 'static', '.gitignore') << ' ' << Rails.root.to_s
+    sys 'cp ' << File.join(ZfbenRailsRakePath, 'static', '.gitignore') << ' ' << Rails.root.to_s
   end
 end
