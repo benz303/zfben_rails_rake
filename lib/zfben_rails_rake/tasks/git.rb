@@ -7,8 +7,8 @@ namespace 'git' do
   desc 'git commit with your comment'
   task :commit, [:comment] do |task, args|
     args = args.to_hash
-    comment = args.has_key?(:comment) ? args[:comment] : `git status`
     sys "git add ."
+    comment = args.has_key?(:comment) ? args[:comment] : `git status`
     sys "git commit -m '#{comment}' -a"
   end
   
