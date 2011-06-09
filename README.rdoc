@@ -2,21 +2,18 @@
 
 This is plugin to add some useful tasks to rails.
 
-  rake clear:all                    # clear all
-  rake clear:log                    # clear log folder
-  rake clear:public                 # clear public folder
-  rake clear:tmp                    # clear tmp folder
+  rake git:clear                      # clear files in .gitignore
+  rake git:commit[comment]            # git commit with your comment
+  rake git:pull                       # git pull
+  rake git:push[comment]              # git push with your comment
+  rake git:copy                       # copy .gitignore to rails root path
 
-  rake git:commit[comment]          # git commit with your comment
-  rake git:pull                     # git pull
-  rake git:push[comment]            # git push with your comment
-  rake git:copy                     # copy .gitignore to rails root path
-
-  rake unicorn:restart[env,config]  # restart server
-  rake unicorn:start[env,config]    # start server
-  rake unicorn:stop                 # stop server
+  rake unicorn:copy[processes,port]   # copy unicorn.rb to root path
+  rake unicorn:restart[env,config]    # restart server
+  rake unicorn:start[env,config]      # start server
+  rake unicorn:stop                   # stop server
   
-  rake log:analytics                # analytics log file
+  rake log:analytics                  # analytics log file
 
 == Getting Started
 

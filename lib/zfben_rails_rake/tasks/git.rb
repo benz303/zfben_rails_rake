@@ -1,4 +1,4 @@
-namespace 'git' do  
+namespace :git do  
   desc 'git pull'
   task :pull do
     sys 'git pull'
@@ -28,15 +28,7 @@ namespace 'git' do
     unless File.exists? path
       err '.gitignore is not exists! Please run `rake git:copy` first'
     else
-      File.open(path).readlines.join('').split("\n").compact.each do |files|
-        Dir[files].each do |f|
-          if File.directory? f 
-            sys 'rm -r ' << f
-          else
-            sys 'rm ' << f
-          end
-        end
-      end
+      sys 'git clean -dfX'
     end
   end
 end
