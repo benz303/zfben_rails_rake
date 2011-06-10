@@ -17,13 +17,13 @@ namespace :unicorn do
   task :restart, [:env, :config] => [:stop, :start]
   
   desc 'copy unicorn.rb to root path'
-  task :copy, [:processes, :port] do |task, args|
+  task :copy, [:processes] do |task, args|
     path = File.join(Rails.root, 'unicorn.rb')
     if File.exists? path
       err 'unicorn.rb is exists! Please remove it and run again.'
     else
-      args = { :processes => 1, :port => 8080 }.merge args.to_hash
-      p file = "# Added by zfben_rails_rake\nworker_processes #{args[:processes]}\nlisten #{args[:port]}, :tcp_nopush => true, :tcp_nodelay => true\npid 'tmp/unicorn.pid'\n# End zfben_rails_rake"
+      args = { :processes => 1 }.merge args.to_hash
+      p file = "# Added by zfben_rails_rake\nworker_processes #{args[:processes]}\nlisten 'tmp/unicorn.sock', :tcp_nopush => true, :tcp_nodelay => true\npid 'tmp/unicorn.pid'\n# End zfben_rails_rake"
       File.open(path, 'w'){ |f| f.write file }
     end
   end
