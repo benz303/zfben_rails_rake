@@ -23,7 +23,7 @@ namespace :unicorn do
       err 'unicorn.rb is exists! Please remove it and run again.'
     else
       args = { :processes => 1 }.merge args.to_hash
-      p file = "# Added by zfben_rails_rake\nworker_processes #{args[:processes]}\nlisten 'tmp/unicorn.sock', :tcp_nopush => true, :tcp_nodelay => true\npid 'tmp/unicorn.pid'\n# End zfben_rails_rake"
+      p file = "# Added by zfben_rails_rake\nworker_processes #{args[:processes]}\nlisten File.realpath(File.dirname(__FILE__)) << '/tmp/unicorn.sock', :tcp_nopush => true, :tcp_nodelay => true\npid 'tmp/unicorn.pid'\npreload_app true\n# End zfben_rails_rake"
       File.open(path, 'w'){ |f| f.write file }
     end
   end
