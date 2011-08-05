@@ -1,7 +1,7 @@
 namespace :unicorn do
   desc 'start server'
   task :start, [:env, :config] do |task, args|
-    args = { :env => 'development', :config => 'unicorn.rb' }.merge args.to_hash
+    args = { :env => 'production', :config => 'unicorn.rb' }.merge args.to_hash
     cmd = 'unicorn_rails'
     cmd << ' -c ' << args[:config] if File.exists?(File.join(Rails.root, args[:config]))
     cmd << ' -E ' << args[:env]
