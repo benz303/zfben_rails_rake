@@ -1,7 +1,7 @@
 require 'rainbow'
 def sys cmd
   STDOUT.print (cmd + "\n").color(:black).background(:white)
-  system cmd
+  err '' unless system cmd
 end
 
 def err msg

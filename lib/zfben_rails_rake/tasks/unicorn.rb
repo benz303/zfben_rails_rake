@@ -10,8 +10,10 @@ namespace :unicorn do
   
   desc 'stop server'
   task :stop do
-    sys 'kill -QUIT `cat tmp/unicorn.pid`' if File.exists? File.join(Rails.root, 'tmp', 'unicorn.pid')
-    sleep 1
+    if File.exists? File.join(Rails.root, 'tmp', 'unicorn.pid')
+      sys 'kill -QUIT `cat tmp/unicorn.pid`'
+      sleep 1
+    end
     sys 'rm -r tmp/*'
   end
   

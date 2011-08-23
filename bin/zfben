@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+require 'zfben_rails_rake'
+
+args = ARGF.argv
+
+args[0] = '-h' if args.length == 0
+
+case args[0]
+  when '-h', 'help'
+    tip 'zfben commond list:'
+  else
+    task_file = File.join(File.dirname(__FILE__), 'zfben_rails_rake', 'tasks', args[0] + '.rb')
+    if File.exists?(task_file) && Rake::Task.has_key?(args[0])
+      load task_file
+      Rake::Task[args[0]].invoke
+    else
+      err 'task isn\'t exists!'
+    end
+end

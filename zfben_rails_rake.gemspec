@@ -11,6 +11,14 @@ Gem::Specification.new do |s|
   s.homepage    = "https://github.com/benz303/zfben_rails_rake"
   s.summary     = %q{}
   s.description = %q{}
+  
+  s.post_install_message =%q{********************************************************************************
+  Thank you for using zfben_rails_rake!
+  
+  Please follow @zfben on Twitter for announcements, updates, and news.
+  https://twitter.com/zfben
+********************************************************************************
+}
 
   s.rubyforge_project = "zfben_rails_rake"
 
@@ -18,6 +26,8 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
+  
+  s.required_ruby_version     = '>= 1.9'
   
   s.add_dependency 'rainbow'
   s.add_dependency 'unicorn'
