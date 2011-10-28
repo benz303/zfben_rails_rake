@@ -13,4 +13,7 @@ if defined? Rails
   end
 else
   Dir[File.join(ZfbenRailsRakePath, 'tasks', '*')].each{ |f| require f }
+  task :default do
+    p 'ok'
+  end
 end

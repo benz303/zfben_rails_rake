@@ -1,14 +1,13 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "zfben_rails_rake/version"
 
 Gem::Specification.new do |s|
-  s.name        = "zfben_rails_rake"
-  s.version     = ZfbenRailsRake::VERSION
+  s.name        = 'zfben_rails_rake'
+  s.version     = '0.0.13'
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Ben"]
-  s.email       = ["ben@zfben.com"]
-  s.homepage    = "https://github.com/benz303/zfben_rails_rake"
+  s.authors     = ['Ben']
+  s.email       = ['ben@zfben.com']
+  s.homepage    = 'https://github.com/benz303/zfben_rails_rake'
   s.summary     = %q{}
   s.description = %q{}
   
@@ -19,8 +18,6 @@ Gem::Specification.new do |s|
   https://twitter.com/zfben
 ********************************************************************************
 }
-
-  s.rubyforge_project = "zfben_rails_rake"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")

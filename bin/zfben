@@ -1,4 +1,2 @@
 #!/usr/bin/env ruby
-require 'rake'
-ARGV.push ('-f ' << File.realpath(File.dirname(__FILE__) + '/../lib/zfben_rails_rake.rb'))
-Rake.application.run
+system 'rake -f ' << File.realpath(File.dirname(__FILE__) + '/../lib/zfben_rails_rake.rb') << ' ' << ARGV.join(' ')
