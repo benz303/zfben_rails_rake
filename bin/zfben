@@ -1,7 +1,4 @@
 #!/usr/bin/env ruby
 require 'rake'
-require 'zfben_rails_rake'
-
-Rake.application.tasks.each do |t|
-  print "#{t.name} -- #{t.desc}\n"
-end
+ARGV.push ('-f ' << File.realpath(File.dirname(__FILE__) + '/../lib/zfben_rails_rake.rb'))
+Rake.application.run

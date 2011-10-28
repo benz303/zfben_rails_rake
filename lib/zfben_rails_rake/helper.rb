@@ -10,4 +10,8 @@ def err msg
   exit!
 end
 
-ROOT = File.realpath(Rails.root)
+if defined? Rails
+  ROOT = File.realpath(Rails.root)
+else
+  ROOT = File.dirname(__FILE__)
+end

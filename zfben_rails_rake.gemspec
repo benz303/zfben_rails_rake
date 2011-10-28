@@ -30,7 +30,4 @@ Gem::Specification.new do |s|
   s.required_ruby_version     = '>= 1.9'
   
   s.add_dependency 'rainbow'
-  s.add_dependency 'unicorn'
-  s.add_dependency 'request-log-analyzer'
-  s.add_dependency 'net-ssh'
 end
