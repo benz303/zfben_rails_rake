@@ -1,5 +1,7 @@
 require 'rainbow'
 require 'fileutils'
+require 'yaml'
+
 def sys cmd
   STDOUT.print (cmd + "\n").color(:green)
   err '' unless system cmd
@@ -10,8 +12,8 @@ def err msg
   exit!
 end
 
-if defined? Rails && !Rails.root.nil?
-  ROOT = File.realpath(Rails.root)
+if defined?(Rails) && !Rails.root.nil?
+  ROOT = File.realpath(Rails.root).to_s
 else
-  ROOT = File.dirname(__FILE__)
+  ROOT = File.realpath('.').to_s
 end

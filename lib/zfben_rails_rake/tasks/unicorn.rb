@@ -19,7 +19,7 @@ if File.exists? ROOT + '/unicorn.rb'
       sys 'rm -r tmp/*'
     end
 
-    desc 'Hot restart server'
+    desc 'Hot restart unicorn server'
     task :restart do
       sys 'kill -HUP `cat tmp/unicorn.pid`'
     end
