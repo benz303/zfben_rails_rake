@@ -16,7 +16,7 @@ if File.exist?(ROOT + '/config/mongoid.yml')
     desc 'Start Mongodb'
     task :start do
       sys "mkdir #{ROOT}/mongo" unless File.exists?(ROOT + '/mongo')
-      sys "mongod --nohttpinterface --nojournal --port #{config['production']['port']} --bind_ip #{config['production']['host']} --dbpath #{path}/mongo --fork --logpath #{path}/log/mongodb.log"
+      sys "mongod --nohttpinterface --nojournal --port #{config['production']['port']} --bind_ip #{config['production']['host']} --dbpath #{ROOT}/mongo --fork --logpath #{ROOT}/log/mongodb.log"
     end
 
     desc 'Stop Mongodb'
