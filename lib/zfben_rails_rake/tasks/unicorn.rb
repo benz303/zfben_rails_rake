@@ -17,8 +17,10 @@ namespace :unicorn do
     sys 'rm -r tmp/*'
   end
   
-  desc 'restart server'
-  task :restart, [:env, :config] => [:stop, :start]
+  desc 'hot restart server'
+  task :restart do
+    sys 'kill -HUP `cat tmp/unicorn.pid`'
+  end
   
   desc 'copy unicorn.rb to root path'
   task :copy, [:processes] do |task, args|
