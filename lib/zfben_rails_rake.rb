@@ -9,5 +9,7 @@ module ZfbenRailsRake
         Dir[File.join(ZfbenRailsRakePath, 'tasks', '*')].each{ |f| load f }
       end
     end
+  else
+    Dir[File.join(ZfbenRailsRakePath, 'tasks', '*')].each{ |f| load f }
   end
 end

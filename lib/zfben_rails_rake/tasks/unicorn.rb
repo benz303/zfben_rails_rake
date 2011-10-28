@@ -1,36 +1,27 @@
-namespace :unicorn do
-  desc 'start server'
-  task :start, [:env, :config] do |task, args|
-    args = { :env => 'production', :config => 'unicorn.rb' }.merge args.to_hash
-    cmd = 'unicorn_rails'
-    cmd << ' -c ' << args[:config] if File.exists?(File.join(Rails.root, args[:config]))
-    cmd << ' -E ' << args[:env]
-    sys cmd << ' -D'
-  end
-  
-  desc 'stop server'
-  task :stop do
-    if File.exists? File.join(Rails.root, 'tmp', 'unicorn.pid')
-      sys 'kill -QUIT `cat tmp/unicorn.pid`'
-      sleep 1
+if File.exists? ROOT + '/unicorn.rb'
+  namespace :unicorn do
+    desc 'Start unicorn server'
+    task :start do
+      if File.exists? ROOT + '/config.ru'
+        cmd = 'unicorn'
+      else
+        cmd = 'unicorn_rails'
+      end
+      sys cmd << ' -c unicorn.rb -E production -D'
     end
-    sys 'rm -r tmp/*'
-  end
-  
-  desc 'hot restart server'
-  task :restart do
-    sys 'kill -HUP `cat tmp/unicorn.pid`'
-  end
-  
-  desc 'copy unicorn.rb to root path'
-  task :copy, [:processes] do |task, args|
-    path = File.join(Rails.root, 'unicorn.rb')
-    if File.exists? path
-      err 'unicorn.rb is exists! Please remove it and run again.'
-    else
-      args = { :processes => 1 }.merge args.to_hash
-      p file = "# Added by zfben_rails_rake\nworker_processes #{args[:processes]}\nlisten File.realpath(File.dirname(__FILE__)) << '/tmp/unicorn.sock', :tcp_nopush => true, :tcp_nodelay => true\npid 'tmp/unicorn.pid'\npreload_app true\n# End zfben_rails_rake"
-      File.open(path, 'w'){ |f| f.write file }
+
+    desc 'Stop unicorn server'
+    task :stop do
+      if File.exists? ROOT + '/tmp/unicorn.pid'
+        sys 'kill -QUIT `cat tmp/unicorn.pid`'
+        sleep 1
+      end
+      sys 'rm -r tmp/*'
+    end
+
+    desc 'Hot restart server'
+    task :restart do
+      sys 'kill -HUP `cat tmp/unicorn.pid`'
     end
   end
 end
