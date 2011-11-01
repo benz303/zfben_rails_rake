@@ -2,21 +2,31 @@
 
 This is plugin to add some useful tasks to rails.
 
+  # has .git folder
   rake git:clear                      # Clear files in .gitignore
   rake git:commit[comment]            # Git commit with your comment
   rake git:pull                       # Git pull
   rake git:push[comment]              # Git push with your comment
 
+  # has unicorn.rb
   rake unicorn:restart                # Hot restart unicorn server
   rake unicorn:start                  # Start unicorn server
   rake unicorn:stop                   # Stop unicorn server
 
+  # has config/mongoid.yml
   rake mongodb:backup                 # mongodump
   rake mongodb:clear                  # Clear mongo folder
   rake mongodb:restore                # mongorestore
   rake mongodb:start                  # Start Mongodb
   rake mongodb:stop                   # Stop Mongodb
 
+  # has initializers/resque.rb
+  rake resque:clear                   # Clear Resque data
+  rake resque:debug                   # Start Resque for debug
+  rake resque:start                   # Start Resque daemon worker
+  rake resque:stop                    # Stop Resque worker
+  rake resque:web                     # Start Resque web interface
+  
 == Getting Started
 
 1. adding gem to Gemfile
