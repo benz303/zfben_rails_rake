@@ -47,7 +47,8 @@ if File.exists?(ROOT + '/config/initializers/resque.rb')
 
     desc 'Start Resque web interface'
     task :web do
-      sys "RAILS_ENV=production resque-web #{ROOT}/config/initializers/resque.rb"
+      require 'resque/server'
+      Resque::Server.run!
     end
   end
 end

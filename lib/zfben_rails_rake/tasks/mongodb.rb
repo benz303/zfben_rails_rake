@@ -3,7 +3,7 @@ if File.exist?(ROOT + '/config/mongoid.yml')
   namespace :mongodb do
     backup = "mongodump --host #{config['production']['host']} --port #{config['production']['port']}"
     desc backup
-    task :backup do
+    task :dump do
       sys backup
     end
 

@@ -14,7 +14,7 @@ This is plugin to add some useful tasks to rails.
   rake unicorn:stop                   # Stop unicorn server
 
   # has config/mongoid.yml
-  rake mongodb:backup                 # mongodump
+  rake mongodb:dump                   # mongodump
   rake mongodb:clear                  # Clear mongo folder
   rake mongodb:restore                # mongorestore
   rake mongodb:start                  # Start Mongodb
