@@ -1,30 +1,29 @@
-if File.exists? Rails.root.join('/.git')
+if File.exists? Rails.root.join('.git')
   namespace :git do
-    include ZfbenRailsRake::Helper
     desc 'Git pull'
     task :pull do
-      sys 'git pull'
+      zfben_rails_rake_system 'git pull'
     end
 
     desc 'Git commit with your comment'
     task :commit, [:comment] do |task, args|
       args = args.to_hash
-      sys "git add ."
+      zfben_rails_rake_system "git add ."
       comment = args.has_key?(:comment) ? args[:comment] : `git status`
-      sys "git commit -m '#{comment}' -a"
+      zfben_rails_rake_system "git commit -m '#{comment}' -a"
     end
 
     desc 'Git push with your comment'
     task :push, [:comment] => [:commit] do |task, comment|
-      sys 'git push'
+      zfben_rails_rake_system 'git push'
     end
 
     desc 'Clear files in .gitignore'
     task :clear do
-      unless File.exists? ROOT + '/.gitignore'
-        err '.gitignore is not exists!'
+      unless File.exists? Rails.root.join('.gitignore')
+        zfben_rails_rake_err '.gitignore is not exists!'
       else
-        sys 'git clean -dfX'
+        zfben_rails_rake_system 'git clean -dfX'
       end
     end
   end

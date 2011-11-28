@@ -1,37 +1,36 @@
-if File.exist? Rails.root.join('/config/mongoid.yml')
+if File.exist? Rails.root.join('config/mongoid.yml')
   namespace :mongodb do
-    include ZfbenRailsRake::Helper
-    config = YAML.load(File.read(ROOT + '/config/mongoid.yml'))
-    backup = "/usr/bin/mongodump --host #{config['production']['host']} --port #{config['production']['port']}"
+    config = YAML.load(File.read(Rails.root.join('config/mongoid.yml')))
+    backup = "mongodump --host #{config['production']['host']} --port #{config['production']['port']}"
     desc backup
     task :dump do
-      sys backup
+      zfben_rails_rake_system backup
     end
 
-    restore = "/usr/bin/mongorestore --host #{config['production']['host']} --port #{config['production']['port']}"
+    restore = "mongorestore --host #{config['production']['host']} --port #{config['production']['port']}"
     desc restore
     task :restore do
-      sys restore
+      zfben_rails_rake_system restore
     end
 
     desc 'Start Mongodb'
     task :start do
-      sys "mkdir #{ROOT}/mongo" unless File.exists?(ROOT + '/mongo')
-      sys "/usr/bin/mongod --nohttpinterface --nojournal --port #{config['production']['port']} --bind_ip #{config['production']['host']} --dbpath #{ROOT}/mongo --fork --logpath #{ROOT}/log/mongodb.log"
+      zfben_rails_rake_system "mkdir #{Rails.root}/mongo" unless File.exists?(Rails.root.join('mongo'))
+      zfben_rails_rake_system "mongod --nohttpinterface --nojournal --port #{config['production']['port']} --bind_ip #{config['production']['host']} --dbpath #{Rails.root}/mongo --fork --logpath #{Rails.root}/log/mongodb.log"
     end
 
     desc 'Stop Mongodb'
     task :stop do
-      path = ROOT + '/mongo/mongod.lock'
+      path = Rails.root.join('mongo/mongod.lock').to_s
       if File.exists?(path)
-        sys "kill `cat #{path}`"
-        sys 'rm ' + path
+        zfben_rails_rake_system "kill `cat #{path}`"
+        zfben_rails_rake_system 'rm ' + path
       end
     end
 
     desc 'Clear mongo folder'
     task :clear do
-      sys 'rm -r mongo/*'
+      zfben_rails_rake_system 'rm -r mongo/*'
     end
   end
 end
