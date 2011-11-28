@@ -1,10 +1,12 @@
-if File.exists?(ROOT + '/config/initializers/resque.rb')
-  require ROOT + '/config/initializers/resque.rb'
-  require 'resque/tasks'
-  if defined?(Resque::Scheduler)
-    require 'resque_scheduler/tasks'
-  end
+if File.exists? Rails.root.join('/config/initializers/resque.rb')
   namespace :resque do
+    include ZfbenRailsRake::Helper
+    require ROOT + '/config/initializers/resque.rb'
+    require 'resque/tasks'
+    if defined?(Resque::Scheduler)
+      require 'resque_scheduler/tasks'
+    end
+    
     task :setup => :environment
 
     task :_work => ['resque:preload', 'resque:setup'] do

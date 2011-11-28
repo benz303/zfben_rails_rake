@@ -1,5 +1,6 @@
-if File.exists?(ROOT + '/.git')
-  namespace :git do  
+if File.exists? Rails.root.join('/.git')
+  namespace :git do
+    include ZfbenRailsRake::Helper
     desc 'Git pull'
     task :pull do
       sys 'git pull'

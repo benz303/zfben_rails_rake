@@ -1,6 +1,0 @@
-#!/usr/bin/env ruby
-if File.exists?('Rakefile')
-  system "rake #{ARGV.join(' ')} -E \"require 'zfben_rails_rake'\""
-else
-  print "Sorry, Not found Rakefile.\n"
-end

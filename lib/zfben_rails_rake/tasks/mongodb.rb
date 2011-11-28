@@ -1,13 +1,14 @@
-if File.exist?(ROOT + '/config/mongoid.yml')
-  config = YAML.load(File.read(ROOT + '/config/mongoid.yml'))
+if File.exist? Rails.root.join('/config/mongoid.yml')
   namespace :mongodb do
-    backup = "mongodump --host #{config['production']['host']} --port #{config['production']['port']}"
+    include ZfbenRailsRake::Helper
+    config = YAML.load(File.read(ROOT + '/config/mongoid.yml'))
+    backup = "/usr/bin/mongodump --host #{config['production']['host']} --port #{config['production']['port']}"
     desc backup
     task :dump do
       sys backup
     end
 
-    restore = "mongorestore --host #{config['production']['host']} --port #{config['production']['port']}"
+    restore = "/usr/bin/mongorestore --host #{config['production']['host']} --port #{config['production']['port']}"
     desc restore
     task :restore do
       sys restore
@@ -16,7 +17,7 @@ if File.exist?(ROOT + '/config/mongoid.yml')
     desc 'Start Mongodb'
     task :start do
       sys "mkdir #{ROOT}/mongo" unless File.exists?(ROOT + '/mongo')
-      sys "mongod --nohttpinterface --nojournal --port #{config['production']['port']} --bind_ip #{config['production']['host']} --dbpath #{ROOT}/mongo --fork --logpath #{ROOT}/log/mongodb.log"
+      sys "/usr/bin/mongod --nohttpinterface --nojournal --port #{config['production']['port']} --bind_ip #{config['production']['host']} --dbpath #{ROOT}/mongo --fork --logpath #{ROOT}/log/mongodb.log"
     end
 
     desc 'Stop Mongodb'
