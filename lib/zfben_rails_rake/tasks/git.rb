@@ -8,7 +8,7 @@ if File.exists? Rails.root.join('.git')
     desc 'Git commit with your comment'
     task :commit, [:comment] do |task, args|
       args = args.to_hash
-      zfben_rails_rake_system "git add ."
+      zfben_rails_rake_system 'git add .'
       comment = args.has_key?(:comment) ? args[:comment] : `git status`
       zfben_rails_rake_system "git commit -m '#{comment}' -a"
     end

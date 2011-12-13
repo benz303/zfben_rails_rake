@@ -1,13 +1,14 @@
 if File.exists? Rails.root.join('unicorn.rb')
   namespace :unicorn do
     desc 'Start unicorn server'
-    task :start do
+    task :start => :stop do
       if File.exists? Rails.root.join('config.ru')
         cmd = 'unicorn'
       else
         cmd = 'unicorn_rails'
       end
-      zfben_rails_rake_system cmd << ' -c unicorn.rb -E production -D'
+      cmd << ' -c unicorn.rb -E production -D'
+      zfben_rails_rake_system cmd
     end
 
     desc 'Stop unicorn server'
@@ -15,11 +16,15 @@ if File.exists? Rails.root.join('unicorn.rb')
       if File.exists? Rails.root.join('tmp/unicorn.pid')
         zfben_rails_rake_system 'kill -QUIT `cat tmp/unicorn.pid`'
         sleep 1
+        zfben_rails_rake_system 'rm tmp/unicorn.pid'
       end
-      zfben_rails_rake_system 'rm -r tmp/*'
     end
 
-    desc 'Restart unicorn server'
-    task :restart => [:stop, :start]
+    desc 'Hot restart unicorn server'
+    task :restart do
+      if File.exists? Rails.root.join('tmp/unicorn.pid')
+        zfben_rails_rake_system 'kill -USR2 `cat tmp/unicorn.pid`'
+      end
+    end
   end
 end
