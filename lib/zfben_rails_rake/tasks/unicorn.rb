@@ -16,7 +16,7 @@ if File.exists? Rails.root.join('unicorn.rb')
       if File.exists? Rails.root.join('tmp/unicorn.pid')
         zfben_rails_rake_system 'kill -QUIT `cat tmp/unicorn.pid`'
         sleep 1
-        zfben_rails_rake_system 'rm tmp/unicorn.pid'
+        zfben_rails_rake_system 'rm tmp/unicorn.pid' if File.exists? Rails.root.join('tmp/unicorn.pid')
       end
     end
 
