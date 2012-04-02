@@ -8,6 +8,7 @@ if File.exists? Rails.root.join('unicorn.rb')
         cmd = 'unicorn_rails'
       end
       cmd << ' -c unicorn.rb -E production -D'
+      zfben_rails_rake_system 'mkdir tmp' unless File.exists? Rails.root.join('tmp')
       zfben_rails_rake_system cmd
     end
 

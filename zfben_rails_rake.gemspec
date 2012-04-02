@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = 'zfben_rails_rake'
-  s.version     = '0.0.21'
+  s.version     = '0.0.22'
   s.platform    = Gem::Platform::RUBY
   s.authors     = ['Ben']
   s.email       = ['ben@zfben.com']
